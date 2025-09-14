@@ -33,7 +33,7 @@ class ProcessorContract extends Contract {
         harvest.lastUpdatedBy = mspId;
         harvest.lastUpdatedTime = new Date().toISOString();
 
-        await ctx.stub.putState(batchId, Buffer.from(JSON.stringify(harvest)));
+        await ctx.stub.putState(batchId, Buffer.from(JSON.stringify(harvest)))
         return JSON.stringify(harvest);
     }
 
