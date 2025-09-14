@@ -104,4 +104,58 @@ Query installed chaincodes:
 peer lifecycle chaincode queryinstalled
 
 
-You’ll see Package ID and label for supplychain. -->
+You’ll see Package ID and label for supplychain. -
+
+
+
+
+
+
+1️⃣ Current structure breakdown
+backend/
+├─ config/
+│  └─ connection-profile.json    # Fabric network connection profile
+├─ fabric/
+│  └─ gateway.js                # Connects backend to Fabric network
+├─ node_modules/
+├─ routes/
+│  ├─ distribution.js
+│  ├─ harvest.js
+│  ├─ lab.js
+│  └─ processor.js
+├─ wallet/                       # Stores identities for Fabric network
+├─ index.js                       # Main backend entry (Express app)
+├─ package.json
+└─ package-lock.json
+
+2️⃣ How it works
+
+gateway.js
+
+Reads the connection-profile.json in config/.
+
+Connects to the Fabric network using the wallet identities.
+
+Returns a contract object for submitting/evaluating chaincode transactions.
+
+routes/*.js
+
+Each file corresponds to a smart contract (Harvest, Distribution, Lab, Processor).
+
+Defines REST APIs for actions like create, update, read, query all.
+
+Uses gateway.js to get the Fabric contract and call transactions.
+
+wallet/
+
+Stores identities (e.g., appUser) needed to authenticate with Fabric peers.
+
+index.js
+
+Imports all routes and initializes the Express server.
+
+Binds routes to URLs like /harvest, /distribution, etc.
+
+package.json
+
+Contains backend dependencies like fabric-network and express.
