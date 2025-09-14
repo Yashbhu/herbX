@@ -5,7 +5,7 @@ const { getContract } = require('../fabric/gateway');
 router.post('/process', async (req, res) => {
   try {
     const { processId, harvestId, status } = req.body;
-    const contract = await getContract('processorCC');
+    const contract = await getContract('harvestCC', 'ProcessorContract');
     await contract.submitTransaction('processHarvest', processId, harvestId, status);
     res.json({ success: true, message: 'Harvest processed' });
   } catch (err) {
@@ -15,7 +15,7 @@ router.post('/process', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   try {
-    const contract = await getContract('processorCC');
+    const contract = await getContract('harvestCC', 'ProcessorContract');
     const result = await contract.evaluateTransaction('readProcess', req.params.id);
     res.json(JSON.parse(result.toString()));
   } catch (err) {
