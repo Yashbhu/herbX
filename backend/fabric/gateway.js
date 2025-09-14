@@ -16,8 +16,8 @@ async function connectToNetwork(identityName) {
         discovery: { enabled: true, asLocalhost: true }
     });
 
-    const network = await gateway.getNetwork('mychannel'); // replace with your channel
-    const contract = network.getContract('supplychain');  // your chaincode name
+    const network = await gateway.getNetwork('mychannel');
+    const contract = network.getContract('supplychain');  
 
     return { gateway, network, contract };
 }
