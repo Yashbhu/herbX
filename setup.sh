@@ -14,7 +14,6 @@ export PATH=$PWD/fabric-samples/bin:$PATH
 # Peers and Orderer TLS certs
 ORDERER_CA=$PWD/fabric-samples/test-network/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem
 PEER0_ORG1_CA=$PWD/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
-
 CHANNEL_NAME="mychannel"
 CHAINCODE_NAME="harvestCC"
 CHAINCODE_VERSION="1.0"
@@ -31,19 +30,19 @@ pushd fabric-samples/test-network
 popd
 
 # -------------------------
-# Create Channel if not exists
+# Create Channel (if not exists)
 # -------------------------
 echo "Checking if channel $CHANNEL_NAME exists..."
 peer channel list | grep $CHANNEL_NAME || {
     echo "Channel $CHANNEL_NAME does not exist. Creating..."
     peer channel create -o localhost:7050 -c $CHANNEL_NAME \
-        --ordererTLSHostnameOverride orderer.example.com \
-        --outputBlock $PWD/fabric-samples/test-network/channel-artifacts/${CHANNEL_NAME}.block \
-        --tls --cafile $ORDERER_CA
+      --ordererTLSHostnameOverride orderer.example.com \
+      --outputBlock $PWD/fabric-samples/test-network/channel-artifacts/${CHANNEL_NAME}.block \
+      --tls --cafile $ORDERER_CA
 }
 
 # -------------------------
-# Join Peer to Channel if not already
+# Join Peers to Channel (if not already)
 # -------------------------
 echo "Checking if peer0.org1 is in channel..."
 peer channel list | grep $CHANNEL_NAME | grep "mychannel" || {
@@ -52,7 +51,7 @@ peer channel list | grep $CHANNEL_NAME | grep "mychannel" || {
 }
 
 # -------------------------
-# Package Chaincode if not exists
+# Package Chaincode (if not exists)
 # -------------------------
 if [ ! -f smartcontracts.tar.gz ]; then
     echo "Packaging chaincode..."
@@ -65,7 +64,7 @@ else
 fi
 
 # -------------------------
-# Install Chaincode if not installed
+# Install Chaincode (if not installed)
 # -------------------------
 echo "Checking if chaincode is installed..."
 INSTALLED=$(peer lifecycle chaincode queryinstalled | grep $CHAINCODE_LABEL || true)
@@ -80,7 +79,7 @@ fi
 PACKAGE_ID=$(peer lifecycle chaincode queryinstalled | grep $CHAINCODE_LABEL | awk -F', ' '{print $1}' | awk '{print $3}')
 
 # -------------------------
-# Approve Chaincode if not approved
+# Approve Chaincode (idempotent)
 # -------------------------
 echo "Checking if chaincode approved for Org1..."
 CHECK_APPROVAL=$(peer lifecycle chaincode checkcommitreadiness --channelID $CHANNEL_NAME \
@@ -98,7 +97,7 @@ else
 fi
 
 # -------------------------
-# Commit Chaincode if not committed
+# Commit Chaincode (if not committed)
 # -------------------------
 echo "Checking if chaincode committed..."
 COMMITTED=$(peer lifecycle chaincode querycommitted --channelID $CHANNEL_NAME | grep $CHAINCODE_NAME || true)
