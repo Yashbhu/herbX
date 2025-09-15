@@ -1,4 +1,4 @@
- <!-- Clone Hyperledger Fabric Samples
+ Clone Hyperledger Fabric Samples
 cd ~/xyz/harvest  # your project folder
 git clone https://github.com/hyperledger/fabric-samples.git
 cd fabric-samples
