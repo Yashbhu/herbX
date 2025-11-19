@@ -83,16 +83,15 @@ Every step — collection, testing, processing, manufacturing — is tracked imm
 ---
 
 ## Repository Structure
-
+```
 herbX/
 ├── chaincode/ # Smart contracts
-├── ai/ # AI model + inference service
 ├── api/ # Backend API
 ├── network/ # Fabric network configs
 ├── scripts/ # Setup & automation scripts
 ├── docs/ # Architecture & technical docs
 └── tests/ # Unit + integration tests
-
+```
 yaml
 Copy code
 
@@ -187,3 +186,4 @@ Just tell me!
 
 
 ChatGPT can make mistakes. Check important info. See Cookie Preferences.
+
