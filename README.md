@@ -61,8 +61,7 @@ Every step — collection, testing, processing, manufacturing — is tracked imm
 ## Key Features
 
 - 🔐 Permissioned blockchain  
-- 📜 Immutable ledger of herb lifecycle  
-- 🤖 AI classification module  
+- 📜 Immutable ledger of herb lifecycle    
 - 🔁 Smart contract–driven workflow  
 - 🔍 End-to-end traceability  
 - 🧾 Cryptographic digital certificates  
@@ -74,8 +73,7 @@ Every step — collection, testing, processing, manufacturing — is tracked imm
 ## Technology Stack
 
 - **Blockchain:** Hyperledger Fabric  
-- **Smart Contracts:** Go / Node.js  
-- **AI Model:** Python (ML classification service)  
+- **Smart Contracts:** Go / Node.js    
 - **API Backend:** Node.js / Express  
 - **Storage:** Fabric ledger + optional DB (metadata)  
 - **Clients:** CLI tools / dashboards  
@@ -102,19 +100,17 @@ Copy code
 1. **Collector registers a herb batch**  
    → Smart contract assigns batch ID & records origin.
 
-2. **AI classification validates herb identity**  
-   → Results are sealed on blockchain.
 
-3. **Processors update lifecycle stages**  
+2. **Processors update lifecycle stages**  
    → Drying, grading, transport, storage, etc.
 
-4. **Laboratories add testing & quality reports**  
+3. **Laboratories add testing & quality reports**  
    → Purity, moisture, chemicals, contaminants.
 
-5. **Manufacturers verify complete provenance**  
+4. **Manufacturers verify complete provenance**  
    → Ensures authenticity before use.
 
-6. **Regulators & consumers query traceability data**  
+5. **Regulators & consumers query traceability data**  
    → Shows verified, tamper-proof supply chain history.
 
 ---
